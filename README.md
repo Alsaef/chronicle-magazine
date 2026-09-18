@@ -121,9 +121,9 @@ npm run dev
 ```
 
 Open your browser at:
-- **Magazine Homepage**: [http://localhost:3000](http://localhost:3000)
-- **Admin Login**: [http://localhost:3000/admin/login](http://localhost:3000/admin/login)
-- **Admin Dashboard**: [http://localhost:3000/admin/dashboard](http://localhost:3000/admin/dashboard)
+- **Magazine Homepage**: [https://chronicle-magazine.vercel.app](https://chronicle-magazine.vercel.app)
+- **Admin Login**: [https://chronicle-magazine.vercel.app/admin/login](https://chronicle-magazine.vercel.app/admin/login)
+- **Admin Dashboard**: [https://chronicle-magazine.vercel.app/admin/dashboard](https://chronicle-magazine.vercel.app/admin/dashboard)
 
 ---
 
