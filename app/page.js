@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useSearchParams, useRouter } from 'next/navigation';
 import {
   Sparkles,
@@ -104,85 +105,108 @@ function HomeContent() {
       {/* ------------------------------------------------------------- */}
       {/* 1. HERO BANNER: Featured Person of the Week                   */}
       {/* ------------------------------------------------------------- */}
-      {!searchQuery && activeCategory === 'All' && featuredStory && !loading && (
-        <section className="border-b border-base-300 bg-base-200/50 py-10 lg:py-16 transition-colors">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              {/* Left Column: Editorial Headline & Copy */}
-              <div className="lg:col-span-7 space-y-5">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/15 text-accent text-xs font-bold uppercase tracking-wider">
-                  <Sparkles className="w-3.5 h-3.5" /> Person of the Week • Exclusive Profile
+      {!searchQuery && activeCategory === 'All' && (
+        loading ? (
+          <section className="border-b border-base-300 bg-base-200/50 py-10 lg:py-16">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div className="lg:col-span-7 space-y-5">
+                  <div className="skeleton h-6 w-48 rounded-full" />
+                  <div className="skeleton h-12 w-3/4 rounded-lg" />
+                  <div className="skeleton h-20 w-full rounded-lg" />
+                  <div className="flex gap-4 pt-2">
+                    <div className="skeleton h-5 w-24 rounded-full" />
+                    <div className="skeleton h-5 w-24 rounded-full" />
+                  </div>
+                  <div className="skeleton h-12 w-48 rounded-full mt-4" />
                 </div>
-
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight leading-tight">
-                  <Link
-                    href={`/story/${featuredStory.slug || featuredStory._id}`}
-                    className="hover:text-primary transition-colors"
-                  >
-                    {featuredStory.title}
-                  </Link>
-                </h1>
-
-                <p className="text-base sm:text-lg text-base-content/75 leading-relaxed drop-cap font-serif">
-                  {featuredStory.summary}
-                </p>
-
-                {/* Meta details & CTA */}
-                <div className="pt-2 flex flex-wrap items-center gap-4 text-xs text-base-content/60">
-                  <span className="badge badge-primary badge-outline font-semibold uppercase tracking-wider">
-                    {featuredStory.category}
-                  </span>
-                  <span className="flex items-center gap-1 font-medium">
-                    <Clock className="w-3.5 h-3.5" /> {featuredStory.readingTime || '6 min read'}
-                  </span>
-                  <span>•</span>
-                  <span className="flex items-center gap-1">
-                    <Eye className="w-3.5 h-3.5" /> {(featuredStory.views || 0).toLocaleString()} Views
-                  </span>
-                  <span>•</span>
-                  <span className="flex items-center gap-1">
-                    <Heart className="w-3.5 h-3.5 text-error fill-current" /> {(featuredStory.likes || 0).toLocaleString()} Likes
-                  </span>
-                </div>
-
-                <div className="pt-3">
-                  <Link
-                    href={`/story/${featuredStory.slug || featuredStory._id}`}
-                    className="btn btn-primary btn-md rounded-full px-8 shadow-lg hover:shadow-primary/30 transition-all gap-2 text-sm uppercase tracking-wider font-bold"
-                  >
-                    <span>Read Full Biography</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </div>
-              </div>
-
-              {/* Right Column: Hero Cover Image Frame */}
-              <div className="lg:col-span-5">
-                <div className="relative group rounded-2xl overflow-hidden shadow-2xl border border-base-300 aspect-[4/5] max-h-[460px] w-full">
-                  <Link href={`/story/${featuredStory.slug || featuredStory._id}`}>
-                    <img
-                      src={featuredStory.coverImage}
-                      alt={featuredStory.title}
-                      fetchPriority="high"
-                      decoding="async"
-                      width={600}
-                      height={750}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 text-white">
-                      <span className="text-xs uppercase tracking-widest text-primary-content font-bold mb-1">
-                        Featured Archival Portrait
-                      </span>
-                      <p className="text-sm font-serif italic text-slate-200 line-clamp-2">
-                        "{featuredStory.summary.slice(0, 100)}..."
-                      </p>
-                    </div>
-                  </Link>
+                <div className="lg:col-span-5">
+                  <div className="skeleton rounded-2xl aspect-[4/5] max-h-[460px] w-full" />
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        ) : (
+          featuredStory && (
+            <section className="border-b border-base-300 bg-base-200/50 py-10 lg:py-16 transition-colors">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                  {/* Left Column: Editorial Headline & Copy */}
+                  <div className="lg:col-span-7 space-y-5">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/15 text-accent text-xs font-bold uppercase tracking-wider">
+                      <Sparkles className="w-3.5 h-3.5" /> Person of the Week • Exclusive Profile
+                    </div>
+
+                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold tracking-tight leading-tight">
+                      <Link
+                        href={`/story/${featuredStory.slug || featuredStory._id}`}
+                        className="hover:text-primary transition-colors"
+                      >
+                        {featuredStory.title}
+                      </Link>
+                    </h1>
+
+                    <p className="text-base sm:text-lg text-base-content/75 leading-relaxed drop-cap font-serif">
+                      {featuredStory.summary}
+                    </p>
+
+                    {/* Meta details & CTA */}
+                    <div className="pt-2 flex flex-wrap items-center gap-4 text-xs text-base-content/60">
+                      <span className="badge badge-primary badge-outline font-semibold uppercase tracking-wider">
+                        {featuredStory.category}
+                      </span>
+                      <span className="flex items-center gap-1 font-medium">
+                        <Clock className="w-3.5 h-3.5" /> {featuredStory.readingTime || '6 min read'}
+                      </span>
+                      <span>•</span>
+                      <span className="flex items-center gap-1">
+                        <Eye className="w-3.5 h-3.5" /> {(featuredStory.views || 0).toLocaleString()} Views
+                      </span>
+                      <span>•</span>
+                      <span className="flex items-center gap-1">
+                        <Heart className="w-3.5 h-3.5 text-error fill-current" /> {(featuredStory.likes || 0).toLocaleString()} Likes
+                      </span>
+                    </div>
+
+                    <div className="pt-3">
+                      <Link
+                        href={`/story/${featuredStory.slug || featuredStory._id}`}
+                        className="btn btn-primary btn-md rounded-full px-8 shadow-lg hover:shadow-primary/30 transition-all gap-2 text-sm uppercase tracking-wider font-bold"
+                      >
+                        <span>Read Full Biography</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    </div>
+                  </div>
+
+                  {/* Right Column: Hero Cover Image Frame with Next.js Image priority */}
+                  <div className="lg:col-span-5">
+                    <div className="relative group rounded-2xl overflow-hidden shadow-2xl border border-base-300 aspect-[4/5] max-h-[460px] w-full">
+                      <Link href={`/story/${featuredStory.slug || featuredStory._id}`} className="block w-full h-full relative">
+                        <Image
+                          src={featuredStory.coverImage}
+                          alt={featuredStory.title}
+                          fill
+                          priority
+                          sizes="(max-width: 1024px) 100vw, 500px"
+                          className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 text-white z-10 pointer-events-none">
+                          <span className="text-xs uppercase tracking-widest text-primary-content font-bold mb-1">
+                            Featured Archival Portrait
+                          </span>
+                          <p className="text-sm font-serif italic text-slate-200 line-clamp-2">
+                            "{featuredStory.summary.slice(0, 100)}..."
+                          </p>
+                        </div>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          )
+        )
       )}
 
       {/* ------------------------------------------------------------- */}
@@ -233,30 +257,57 @@ function HomeContent() {
       {/* ------------------------------------------------------------- */}
       {/* 3. TRENDING / TOP VIEWED PERSONALITIES                        */}
       {/* ------------------------------------------------------------- */}
-      {!searchQuery && activeCategory === 'All' && trendingStories.length > 0 && !loading && (
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-2">
-              <Flame className="w-5 h-5 text-accent animate-pulse" />
-              <h2 className="text-xl font-display font-bold uppercase tracking-wider">
-                Trending Personalities
-              </h2>
+      {!searchQuery && activeCategory === 'All' && (
+        loading ? (
+          <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-2">
+                <Flame className="w-5 h-5 text-accent animate-pulse" />
+                <h2 className="text-xl font-display font-bold uppercase tracking-wider">
+                  Trending Personalities
+                </h2>
+              </div>
+              <span className="text-xs text-base-content/60 uppercase tracking-widest">
+                Most Read This Month
+              </span>
             </div>
-            <span className="text-xs text-base-content/60 uppercase tracking-widest">
-              Most Read This Month
-            </span>
-          </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="card bg-base-100 border border-base-300 p-4 space-y-4">
+                  <div className="skeleton h-56 w-full rounded-xl" />
+                  <div className="skeleton h-4 w-28" />
+                  <div className="skeleton h-6 w-full" />
+                </div>
+              ))}
+            </div>
+          </section>
+        ) : (
+          trendingStories.length > 0 && (
+            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-2">
+                  <Flame className="w-5 h-5 text-accent animate-pulse" />
+                  <h2 className="text-xl font-display font-bold uppercase tracking-wider">
+                    Trending Personalities
+                  </h2>
+                </div>
+                <span className="text-xs text-base-content/60 uppercase tracking-widest">
+                  Most Read This Month
+                </span>
+              </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {trendingStories.map((story, index) => (
-              <StoryCard
-                key={story._id || story.slug}
-                story={story}
-                rank={index + 1}
-              />
-            ))}
-          </div>
-        </section>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {trendingStories.map((story, index) => (
+                  <StoryCard
+                    key={story._id || story.slug}
+                    story={story}
+                    rank={index + 1}
+                  />
+                ))}
+              </div>
+            </section>
+          )
+        )
       )}
 
       {/* ------------------------------------------------------------- */}
@@ -276,8 +327,13 @@ function HomeContent() {
           </div>
 
           <div className="text-xs text-base-content/60 flex items-center gap-2">
-            <span>Sort:</span>
+            <label htmlFor="sort-stories-select" className="sr-only">
+              Sort biographies
+            </label>
+            <span aria-hidden="true">Sort:</span>
             <select
+              id="sort-stories-select"
+              aria-label="Sort biographies by criteria"
               value={sortParam}
               onChange={(e) => {
                 const val = e.target.value;

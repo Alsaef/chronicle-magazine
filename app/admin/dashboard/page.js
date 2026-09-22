@@ -1230,8 +1230,10 @@ export default function AdminDashboardPage() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {/* Category */}
                 <div>
-                  <label className="label text-xs font-bold uppercase">Category</label>
+                  <label htmlFor="story-category-select" className="label text-xs font-bold uppercase">Category</label>
                   <select
+                    id="story-category-select"
+                    aria-label="Story Category"
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                     className="select select-bordered select-sm w-full rounded-lg text-xs"

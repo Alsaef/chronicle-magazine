@@ -1,10 +1,33 @@
 import './globals.css';
 import { Suspense } from 'react';
+import { Inter, Merriweather, Playfair_Display } from 'next/font/google';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { ThemeProvider } from '../context/ThemeContext';
 import { ToastProvider } from '../context/ToastContext';
 import { AuthProvider } from '../context/AuthContext';
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-sans',
+});
+
+const merriweather = Merriweather({
+  weight: ['300', '400', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-serif',
+});
+
+const playfair = Playfair_Display({
+  weight: ['600', '700', '800', '900'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-display',
+});
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://chronicle-magazine.vercel.app';
 
@@ -98,7 +121,12 @@ const websiteSchema = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-theme="corporate" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${inter.variable} ${merriweather.variable} ${playfair.variable}`}
+      data-theme="corporate"
+      suppressHydrationWarning
+    >
       <head>
         <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />

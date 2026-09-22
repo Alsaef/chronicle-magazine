@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
 import {
   Heart,
@@ -263,16 +264,15 @@ export default function StoryDetailPage() {
       {/* ------------------------------------------------------------- */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 -mt-6 sm:-mt-8 mb-10">
         <div className="rounded-2xl overflow-hidden shadow-2xl border border-base-300 relative aspect-[16/9] max-h-[520px]">
-          <img
+          <Image
             src={story.coverImage}
             alt={story.title}
-            fetchPriority="high"
-            decoding="async"
-            width={1200}
-            height={675}
-            className="w-full h-full object-cover object-center"
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 1024px"
+            className="object-cover object-center"
           />
-          <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 to-transparent p-4 sm:p-6 text-white text-xs">
+          <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 to-transparent p-4 sm:p-6 text-white text-xs z-10 pointer-events-none">
             <p className="font-serif italic opacity-90">
               Archival Photography • Chronicle Historical Repository
             </p>

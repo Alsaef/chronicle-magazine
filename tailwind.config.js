@@ -8,9 +8,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        serif: ['Merriweather', 'Georgia', 'Cambria', 'serif'],
-        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        display: ['Playfair Display', 'Georgia', 'serif'],
+        serif: ['var(--font-serif)', 'Merriweather', 'Georgia', 'Cambria', 'serif'],
+        sans: ['var(--font-sans)', 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        display: ['var(--font-display)', 'Playfair Display', 'Georgia', 'serif'],
       },
       typography: {
         DEFAULT: {

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Eye, Heart, Clock, ArrowUpRight, Sparkles } from 'lucide-react';
 import { likeStory } from '../lib/api';
@@ -72,15 +73,13 @@ export default function StoryCard({ story, featured = false, rank = null }) {
           featured ? 'md:col-span-7 h-64 md:h-full min-h-[260px]' : 'h-56'
         }`}
       >
-        <Link href={storyHref} className="block w-full h-full">
-          <img
+        <Link href={storyHref} className="block w-full h-full relative">
+          <Image
             src={story.coverImage || 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=800&q=80'}
             alt={story.title}
-            className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
-            loading="lazy"
-            decoding="async"
-            width={800}
-            height={450}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 384px"
+            className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
           />
         </Link>
 
