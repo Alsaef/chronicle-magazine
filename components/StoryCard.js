@@ -78,6 +78,9 @@ export default function StoryCard({ story, featured = false, rank = null }) {
             alt={story.title}
             className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
             loading="lazy"
+            decoding="async"
+            width={800}
+            height={450}
           />
         </Link>
 

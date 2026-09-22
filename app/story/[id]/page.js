@@ -50,17 +50,19 @@ export default function StoryDetailPage() {
       setLoading(true);
       setError(null);
       try {
-        // Fetch story (this also automatically increments views count on the backend!)
-        const storyRes = await getStory(storyId);
-        if (!storyRes.data) {
+        // Fetch story and comments concurrently to eliminate sequential waterfall
+        const [storyRes, commentsRes] = await Promise.all([
+          getStory(storyId),
+          getComments(storyId).catch(() => ({ data: [] }))
+        ]);
+
+        if (!storyRes || !storyRes.data) {
           throw new Error('Biography not found.');
         }
+
         setStory(storyRes.data);
         setLikes(storyRes.data.likes || 0);
-
-        // Fetch comments
-        const commentsRes = await getComments(storyId);
-        setComments(commentsRes.data || []);
+        setComments(commentsRes?.data || []);
       } catch (err) {
         console.error('Error loading story:', err);
         setError(err.message || 'Failed to load biography.');
@@ -264,6 +266,10 @@ export default function StoryDetailPage() {
           <img
             src={story.coverImage}
             alt={story.title}
+            fetchPriority="high"
+            decoding="async"
+            width={1200}
+            height={675}
             className="w-full h-full object-cover object-center"
           />
           <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 to-transparent p-4 sm:p-6 text-white text-xs">

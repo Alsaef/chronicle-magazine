@@ -38,32 +38,41 @@ function HomeContent() {
       setLoading(true);
       setError(null);
       try {
-        // Fetch all stories matching current filter
-        const storiesRes = await getStories({
+        // Fetch all stories, trending, and categories in parallel to eliminate request waterfalls
+        const storiesPromise = getStories({
           category: activeCategory !== 'All' ? activeCategory : undefined,
           search: searchQuery || undefined,
           sort: sortParam || undefined
         });
 
-        const list = storiesRes.data || [];
+        const trendingPromise = (!searchQuery && activeCategory === 'All')
+          ? getStories({ sort: 'views', limit: 3 }).catch(() => ({ data: [] }))
+          : Promise.resolve(null);
+
+        const categoriesPromise = getCategories().catch(() => ({ data: [] }));
+
+        const [storiesRes, trendingRes, catRes] = await Promise.all([
+          storiesPromise,
+          trendingPromise,
+          categoriesPromise
+        ]);
+
+        const list = storiesRes?.data || [];
         setStories(list);
 
         // Find featured story (or take first item)
         const feat = list.find((s) => s.featured) || list[0] || null;
         setFeaturedStory(feat);
 
-        // Fetch top viewed trending stories (independent query if no specific search)
-        if (!searchQuery && activeCategory === 'All') {
-          const trendingRes = await getStories({ sort: 'views', limit: 3 });
-          setTrendingStories(trendingRes.data || []);
+        // Set trending stories
+        if (trendingRes?.data) {
+          setTrendingStories(trendingRes.data);
         } else {
           setTrendingStories(list.slice(0, 3));
         }
 
-        // Fetch categories
-        const catRes = await getCategories().catch(() => ({ data: [] }));
-        setCategories(catRes.data || []);
-
+        // Set categories
+        setCategories(catRes?.data || []);
       } catch (err) {
         console.error('Failed to load stories:', err);
         setError(err.message || 'Could not connect to the API server. Please ensure the backend is running.');
@@ -154,6 +163,10 @@ function HomeContent() {
                     <img
                       src={featuredStory.coverImage}
                       alt={featuredStory.title}
+                      fetchPriority="high"
+                      decoding="async"
+                      width={600}
+                      height={750}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 text-white">

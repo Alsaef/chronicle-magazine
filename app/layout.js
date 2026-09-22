@@ -100,6 +100,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="corporate" suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
