@@ -171,7 +171,8 @@ function HomeContent() {
                     <div className="pt-3">
                       <Link
                         href={`/story/${featuredStory.slug || featuredStory._id}`}
-                        className="btn btn-primary btn-md rounded-full px-8 shadow-lg hover:shadow-primary/30 transition-all gap-2 text-sm uppercase tracking-wider font-bold"
+                        className="btn btn-primary btn-md rounded-full px-8 shadow-lg hover:shadow-primary/30 transition-colors duration-200 gap-2 text-sm uppercase tracking-wider font-bold"
+                        aria-label={`Read full biography of ${featuredStory.title}`}
                       >
                         <span>Read Full Biography</span>
                         <ArrowRight className="w-4 h-4" />
@@ -182,14 +183,18 @@ function HomeContent() {
                   {/* Right Column: Hero Cover Image Frame with Next.js Image priority */}
                   <div className="lg:col-span-5">
                     <div className="relative group rounded-2xl overflow-hidden shadow-2xl border border-base-300 aspect-[4/5] max-h-[460px] w-full">
-                      <Link href={`/story/${featuredStory.slug || featuredStory._id}`} className="block w-full h-full relative">
+                      <Link
+                        href={`/story/${featuredStory.slug || featuredStory._id}`}
+                        className="block w-full h-full relative"
+                        aria-label={`Read featured biography: ${featuredStory.title}`}
+                      >
                         <Image
                           src={featuredStory.coverImage}
                           alt={featuredStory.title}
                           fill
                           priority
                           sizes="(max-width: 1024px) 100vw, 500px"
-                          className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                          className="object-cover transform-gpu group-hover:scale-105 transition-transform duration-700 ease-out"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 text-white z-10 pointer-events-none">
                           <span className="text-xs uppercase tracking-widest text-primary-content font-bold mb-1">
@@ -231,7 +236,7 @@ function HomeContent() {
                 <button
                   key={cat}
                   onClick={() => handleCategoryChange(cat)}
-                  className={`btn btn-sm rounded-full transition-all text-xs uppercase tracking-wider ${
+                  className={`btn btn-sm min-h-[44px] px-4 rounded-full transition-colors duration-200 text-xs uppercase tracking-wider ${
                     isSelected
                       ? 'btn-primary shadow'
                       : 'btn-ghost bg-base-200 hover:bg-base-300'
@@ -245,7 +250,7 @@ function HomeContent() {
             {searchQuery && (
               <button
                 onClick={() => router.push('/')}
-                className="btn btn-sm btn-error btn-outline rounded-full text-xs"
+                className="btn btn-sm min-h-[44px] px-4 btn-error btn-outline rounded-full text-xs transition-colors duration-200"
               >
                 Clear Search ✕
               </button>
@@ -342,7 +347,7 @@ function HomeContent() {
                 else params.delete('sort');
                 router.push(`/?${params.toString()}`);
               }}
-              className="select select-bordered select-xs rounded-full bg-base-200 text-xs"
+              className="select select-bordered select-sm min-h-[44px] rounded-full bg-base-200 text-xs"
             >
               <option value="">Latest Published</option>
               <option value="views">Most Viewed</option>
@@ -419,14 +424,87 @@ function HomeContent() {
   );
 }
 
+function HomeSkeleton() {
+  return (
+    <div className="min-h-screen pb-20">
+      {/* Hero Skeleton */}
+      <section className="border-b border-base-300 bg-base-200/50 py-10 lg:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-7 space-y-5">
+              <div className="skeleton h-6 w-48 rounded-full" />
+              <div className="skeleton h-12 w-3/4 rounded-lg" />
+              <div className="skeleton h-20 w-full rounded-lg" />
+              <div className="flex gap-4 pt-2">
+                <div className="skeleton h-5 w-24 rounded-full" />
+                <div className="skeleton h-5 w-24 rounded-full" />
+              </div>
+              <div className="skeleton h-12 w-48 rounded-full mt-4" />
+            </div>
+            <div className="lg:col-span-5">
+              <div className="skeleton rounded-2xl aspect-[4/5] max-h-[460px] w-full" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Category Tabs Skeleton */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-base-300 pb-5">
+          <div className="space-y-2">
+            <div className="skeleton h-4 w-36" />
+            <div className="skeleton h-8 w-56" />
+          </div>
+          <div className="flex gap-2">
+            {[1, 2, 3, 4, 5].map((i) => (
+              <div key={i} className="skeleton h-11 w-24 rounded-full" />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Trending Skeleton */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
+        <div className="flex items-center justify-between mb-6">
+          <div className="skeleton h-6 w-48" />
+          <div className="skeleton h-4 w-32" />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="card bg-base-100 border border-base-300 p-4 space-y-4">
+              <div className="skeleton h-56 w-full rounded-xl" />
+              <div className="skeleton h-4 w-28" />
+              <div className="skeleton h-6 w-full" />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Grid Skeleton */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
+        <div className="flex items-center justify-between mb-6">
+          <div className="skeleton h-6 w-48" />
+          <div className="skeleton h-6 w-28" />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[1, 2, 3, 4, 5, 6].map((i) => (
+            <div key={i} className="card bg-base-100 border border-base-300 p-4 space-y-4">
+              <div className="skeleton h-52 w-full rounded-xl" />
+              <div className="skeleton h-4 w-28" />
+              <div className="skeleton h-6 w-full" />
+              <div className="skeleton h-16 w-full" />
+              <div className="skeleton h-8 w-1/3" />
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
+
 export default function HomePage() {
   return (
-    <Suspense fallback={
-      <div className="max-w-7xl mx-auto px-4 py-20 text-center">
-        <div className="loading loading-spinner loading-lg text-primary" />
-        <p className="text-xs uppercase tracking-widest text-base-content/60 mt-4">Loading Chronicle Magazine...</p>
-      </div>
-    }>
+    <Suspense fallback={<HomeSkeleton />}>
       <HomeContent />
     </Suspense>
   );

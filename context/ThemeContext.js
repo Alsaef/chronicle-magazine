@@ -5,7 +5,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState('luxury');
+  const [theme, setTheme] = useState('corporate');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

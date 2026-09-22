@@ -208,7 +208,7 @@ export default function StoryDetailPage() {
           <div className="mb-6 flex items-center justify-between">
             <Link
               href="/"
-              className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-base-content/70 hover:text-primary transition-colors"
+              className="inline-flex items-center gap-1.5 min-h-[44px] py-2 text-xs font-bold uppercase tracking-wider text-base-content/70 hover:text-primary transition-colors"
             >
               <ArrowLeft className="w-3.5 h-3.5" /> Back to Biographies
             </Link>
@@ -289,9 +289,11 @@ export default function StoryDetailPage() {
           <div className="flex items-center gap-3">
             <button
               onClick={handleLike}
-              className={`btn btn-sm sm:btn-md rounded-full gap-2 transition-transform active:scale-95 ${
+              className={`btn btn-sm sm:btn-md min-h-[44px] rounded-full gap-2 transition-transform active:scale-95 ${
                 hasLiked ? 'btn-error text-white font-bold' : 'btn-outline btn-error'
               }`}
+              title={`Like biography of ${story.title}`}
+              aria-label={`Like biography of ${story.title}`}
             >
               <Heart className={`w-4 h-4 ${hasLiked ? 'fill-current' : ''}`} />
               <span>{hasLiked ? 'Liked' : 'Like Profile'}</span>
@@ -300,26 +302,27 @@ export default function StoryDetailPage() {
 
             <button
               onClick={() => toggleBookmark(story.slug || story._id)}
-              className={`btn btn-sm sm:btn-md rounded-full gap-2 transition-transform active:scale-95 ${
+              className={`btn btn-sm sm:btn-md min-h-[44px] rounded-full gap-2 transition-transform active:scale-95 ${
                 isBookmarked(story.slug || story._id)
                   ? 'btn-primary text-primary-content font-bold'
                   : 'btn-outline border-base-content/20'
               }`}
               title={isBookmarked(story.slug || story._id) ? 'Saved to reading list' : 'Save to reading list'}
+              aria-label={isBookmarked(story.slug || story._id) ? `Remove ${story.title} from reading list` : `Save ${story.title} to reading list`}
             >
               <Bookmark className={`w-4 h-4 ${isBookmarked(story.slug || story._id) ? 'fill-current' : ''}`} />
               <span>{isBookmarked(story.slug || story._id) ? 'Saved' : 'Save'}</span>
             </button>
           </div>
 
-          {/* Social Share Buttons */}
-          <div className="flex items-center gap-1.5">
+          {/* Social Share Buttons with 44x44px touch targets */}
+          <div className="flex items-center gap-1">
             <span className="text-xs font-semibold uppercase tracking-wider text-base-content/60 mr-2 flex items-center gap-1">
               <Share2 className="w-3.5 h-3.5" /> Share:
             </span>
             <button
               onClick={() => handleShare('twitter')}
-              className="btn btn-ghost btn-sm btn-circle hover:text-[#1DA1F2]"
+              className="btn btn-ghost btn-circle min-w-[44px] min-h-[44px] hover:text-[#1DA1F2]"
               title="Share on X (Twitter)"
               aria-label="Share on X"
             >
@@ -327,7 +330,7 @@ export default function StoryDetailPage() {
             </button>
             <button
               onClick={() => handleShare('linkedin')}
-              className="btn btn-ghost btn-sm btn-circle hover:text-[#0A66C2]"
+              className="btn btn-ghost btn-circle min-w-[44px] min-h-[44px] hover:text-[#0A66C2]"
               title="Share on LinkedIn"
               aria-label="Share on LinkedIn"
             >
@@ -335,7 +338,7 @@ export default function StoryDetailPage() {
             </button>
             <button
               onClick={() => handleShare('facebook')}
-              className="btn btn-ghost btn-sm btn-circle hover:text-[#1877F2]"
+              className="btn btn-ghost btn-circle min-w-[44px] min-h-[44px] hover:text-[#1877F2]"
               title="Share on Facebook"
               aria-label="Share on Facebook"
             >
@@ -343,7 +346,7 @@ export default function StoryDetailPage() {
             </button>
             <button
               onClick={() => handleShare('copy')}
-              className="btn btn-ghost btn-sm btn-circle"
+              className="btn btn-ghost btn-circle min-w-[44px] min-h-[44px]"
               title="Copy Link"
               aria-label="Copy link"
             >
@@ -487,13 +490,14 @@ export default function StoryDetailPage() {
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="label text-xs font-semibold">Your Name</label>
+                  <label htmlFor="comment-author-name" className="label text-xs font-semibold">Your Name</label>
                   <input
+                    id="comment-author-name"
                     type="text"
                     placeholder="e.g. Eleanor Vance"
                     value={commentName}
                     onChange={(e) => setCommentName(e.target.value)}
-                    className="input input-bordered input-sm w-full rounded-lg bg-base-100"
+                    className="input input-bordered min-h-[44px] w-full rounded-lg bg-base-100 text-sm"
                     required
                   />
                 </div>
@@ -501,13 +505,14 @@ export default function StoryDetailPage() {
             )}
 
             <div>
-              <label className="label text-xs font-semibold">Comment Message</label>
+              <label htmlFor="comment-body-text" className="label text-xs font-semibold">Comment Message</label>
               <textarea
+                id="comment-body-text"
                 rows={3}
                 placeholder="Share your perspective on this life story..."
                 value={commentText}
                 onChange={(e) => setCommentText(e.target.value)}
-                className="textarea textarea-bordered w-full rounded-lg text-sm bg-base-100"
+                className="textarea textarea-bordered min-h-[88px] w-full rounded-lg text-sm bg-base-100"
                 required
               />
             </div>
@@ -515,7 +520,8 @@ export default function StoryDetailPage() {
             <button
               type="submit"
               disabled={submittingComment}
-              className="btn btn-primary btn-sm rounded-full px-6 gap-2"
+              className="btn btn-primary btn-md min-h-[44px] rounded-full px-6 gap-2"
+              aria-label="Publish reader comment"
             >
               {submittingComment ? (
                 <>

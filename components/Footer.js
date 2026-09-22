@@ -37,14 +37,16 @@ export default function Footer() {
             <input
               type="email"
               placeholder="Enter your email address..."
+              aria-label="Email address for weekly newsletter"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="input input-bordered input-sm sm:input-md w-full focus:input-primary rounded-full"
+              className="input input-bordered min-h-[44px] w-full focus:input-primary rounded-full text-sm"
             />
             <button
               type="submit"
-              className="btn btn-primary btn-sm sm:btn-md rounded-full px-6 flex items-center gap-2 whitespace-nowrap"
+              className="btn btn-primary min-h-[44px] rounded-full px-6 flex items-center gap-2 whitespace-nowrap text-sm"
+              aria-label="Subscribe to weekly newsletter"
             >
               <span>Subscribe</span>
               <Send className="w-4 h-4" />
@@ -66,13 +68,31 @@ export default function Footer() {
             Chronicle Magazine celebrates human endeavor, visionary leadership, and historical milestones through richly narrated biographies and in-depth cultural portraits.
           </p>
           <div className="flex items-center gap-3 pt-2">
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="btn btn-ghost btn-sm btn-circle" aria-label="Twitter">
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-ghost btn-circle min-w-[44px] min-h-[44px] flex items-center justify-center"
+              aria-label="Visit Chronicle Magazine on Twitter"
+            >
               <Twitter className="w-4 h-4" />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="btn btn-ghost btn-sm btn-circle" aria-label="LinkedIn">
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-ghost btn-circle min-w-[44px] min-h-[44px] flex items-center justify-center"
+              aria-label="Visit Chronicle Magazine on LinkedIn"
+            >
               <Linkedin className="w-4 h-4" />
             </a>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="btn btn-ghost btn-sm btn-circle" aria-label="GitHub">
+            <a
+              href="https://github.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-ghost btn-circle min-w-[44px] min-h-[44px] flex items-center justify-center"
+              aria-label="Visit Chronicle Magazine on GitHub"
+            >
               <Github className="w-4 h-4" />
             </a>
           </div>
@@ -82,24 +102,24 @@ export default function Footer() {
           <h3 className="font-bold uppercase tracking-wider text-xs text-base-content/50 mb-4">
             Curated Categories
           </h3>
-          <ul className="space-y-2 text-sm">
+          <ul className="space-y-1 text-sm">
             <li>
-              <Link href="/?category=Tech+Leaders" className="hover:text-primary transition-colors">
+              <Link href="/?category=Tech+Leaders" className="hover:text-primary transition-colors py-1.5 inline-block">
                 Tech Leaders & CEOs
               </Link>
             </li>
             <li>
-              <Link href="/?category=World+Leaders" className="hover:text-primary transition-colors">
+              <Link href="/?category=World+Leaders" className="hover:text-primary transition-colors py-1.5 inline-block">
                 World Leaders & Peacemakers
               </Link>
             </li>
             <li>
-              <Link href="/?category=Pioneers" className="hover:text-primary transition-colors">
+              <Link href="/?category=Pioneers" className="hover:text-primary transition-colors py-1.5 inline-block">
                 Scientific Pioneers & Innovators
               </Link>
             </li>
             <li>
-              <Link href="/?category=Athletes+%26+Sports" className="hover:text-primary transition-colors">
+              <Link href="/?category=Athletes+%26+Sports" className="hover:text-primary transition-colors py-1.5 inline-block">
                 Athletic Legends & Sports
               </Link>
             </li>
@@ -110,24 +130,24 @@ export default function Footer() {
           <h3 className="font-bold uppercase tracking-wider text-xs text-base-content/50 mb-4">
             Editorial & Access
           </h3>
-          <ul className="space-y-2 text-sm">
+          <ul className="space-y-1 text-sm">
             <li>
-              <Link href="/?sort=featured" className="hover:text-primary transition-colors">
+              <Link href="/?sort=featured" className="hover:text-primary transition-colors py-1.5 inline-block">
                 Featured Cover Profiles
               </Link>
             </li>
             <li>
-              <Link href="/?sort=likes" className="hover:text-primary transition-colors">
+              <Link href="/?sort=likes" className="hover:text-primary transition-colors py-1.5 inline-block">
                 Most Appreciated Biographies
               </Link>
             </li>
             <li>
-              <Link href="/?sort=views" className="hover:text-primary transition-colors">
+              <Link href="/?sort=views" className="hover:text-primary transition-colors py-1.5 inline-block">
                 Top Viewed Biographies
               </Link>
             </li>
             <li>
-              <a href="#top" className="hover:text-primary transition-colors">
+              <a href="#top" className="hover:text-primary transition-colors py-1.5 inline-block">
                 Back to Top ↑
               </a>
             </li>

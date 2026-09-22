@@ -1,7 +1,9 @@
-# Modern desktop and laptop evergreen browser targets
+# Modern desktop, laptop, and mobile phone browser targets
 Chrome >= 100
+ChromeAndroid >= 100
 Firefox >= 100
+FirefoxAndroid >= 100
 Safari >= 15.4
+iOS >= 15.4
 Edge >= 100
 not dead
-

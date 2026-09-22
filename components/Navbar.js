@@ -117,23 +117,24 @@ export default function Navbar() {
         <div className="flex items-center lg:hidden">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="btn btn-ghost btn-sm btn-square"
-            aria-label="Toggle menu"
+            className="btn btn-ghost btn-square min-w-[48px] min-h-[48px] flex items-center justify-center"
+            aria-label="Toggle navigation menu"
+            aria-expanded={mobileMenuOpen}
           >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
         {/* Brand Logo */}
         <div className="flex-1 text-center lg:text-left">
-          <Link href="/" className="inline-block group">
+          <Link href="/" className="inline-block group" aria-label="Chronicle Magazine Home">
             <div className="flex items-center justify-center lg:justify-start gap-2">
               <BookOpen className="w-7 h-7 text-primary group-hover:rotate-6 transition-transform" />
               <h1 className="font-display text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight uppercase">
                 Chronicle
               </h1>
             </div>
-            <p className="text-[10px] sm:text-xs tracking-[0.25em] uppercase text-base-content/60 font-medium">
+            <p className="text-[10px] sm:text-xs tracking-[0.25em] uppercase text-base-content/75 font-medium">
               The Biography & Profile Magazine
             </p>
           </Link>
@@ -144,14 +145,15 @@ export default function Navbar() {
           <input
             type="text"
             placeholder="Search biographies, pioneers..."
+            aria-label="Search biographies and pioneers"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="input input-bordered input-sm w-full pr-8 text-xs focus:input-primary rounded-full bg-base-200/60"
+            className="input input-bordered input-sm w-full pr-10 text-xs focus:input-primary rounded-full bg-base-200/60"
           />
           <button
             type="submit"
-            className="absolute right-2 text-base-content/60 hover:text-primary transition-colors"
-            aria-label="Search"
+            className="absolute right-1 top-1/2 -translate-y-1/2 min-w-[36px] min-h-[36px] flex items-center justify-center text-base-content/70 hover:text-primary transition-colors"
+            aria-label="Submit search"
           >
             <Search className="w-4 h-4" />
           </button>
@@ -163,14 +165,14 @@ export default function Navbar() {
           {mounted && (
             <button
               onClick={toggleTheme}
-              className="btn btn-ghost btn-sm btn-circle text-base-content"
+              className="btn btn-ghost btn-circle min-w-[44px] min-h-[44px] text-base-content flex items-center justify-center"
               title={`Switch to ${theme === 'luxury' ? 'Light' : 'Dark'} theme`}
               aria-label="Toggle Theme"
             >
               {theme === 'luxury' ? (
-                <Sun className="w-4 h-4 text-warning" />
+                <Sun className="w-5 h-5 text-warning" />
               ) : (
-                <Moon className="w-4 h-4 text-primary" />
+                <Moon className="w-5 h-5 text-primary" />
               )}
             </button>
           )}
@@ -180,8 +182,9 @@ export default function Navbar() {
             <div className="relative">
               <button
                 onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                className="btn btn-sm btn-ghost rounded-full gap-2 px-2 border border-base-300 hover:border-primary"
+                className="btn btn-sm sm:btn-md btn-ghost rounded-full gap-2 px-3 min-h-[44px] border border-base-300 hover:border-primary flex items-center"
                 aria-label="User Account Menu"
+                aria-expanded={userDropdownOpen}
               >
                 <div className="w-6 h-6 rounded-full bg-primary text-primary-content flex items-center justify-center font-bold text-xs">
                   {user?.name ? user.name.charAt(0).toUpperCase() : 'U'}
@@ -259,7 +262,7 @@ export default function Navbar() {
               <Link
                 key={cat}
                 href={href}
-                className={`px-4 py-2 rounded-md transition-all ${
+                className={`px-4 py-2 rounded-md transition-colors duration-150 ${
                   isActive
                     ? 'bg-primary text-primary-content font-bold shadow-sm'
                     : 'hover:bg-base-200 text-base-content/80'
@@ -290,7 +293,7 @@ export default function Navbar() {
               <Link
                 href="/profile"
                 onClick={() => setMobileMenuOpen(false)}
-                className="btn btn-xs btn-primary rounded-full"
+                className="btn btn-sm min-h-[44px] px-4 btn-primary rounded-full flex items-center justify-center"
               >
                 Profile
               </Link>
@@ -300,14 +303,14 @@ export default function Navbar() {
               <Link
                 href="/login"
                 onClick={() => setMobileMenuOpen(false)}
-                className="btn btn-sm btn-outline rounded-xl text-xs"
+                className="btn btn-sm min-h-[44px] btn-outline rounded-xl text-xs flex items-center justify-center"
               >
                 Sign In
               </Link>
               <Link
                 href="/register"
                 onClick={() => setMobileMenuOpen(false)}
-                className="btn btn-sm btn-primary rounded-xl text-xs"
+                className="btn btn-sm min-h-[44px] btn-primary rounded-xl text-xs flex items-center justify-center"
               >
                 Join Free
               </Link>
@@ -319,22 +322,23 @@ export default function Navbar() {
             <input
               type="text"
               placeholder="Search biographies..."
+              aria-label="Search biographies"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="input input-bordered input-sm w-full pr-8 text-xs rounded-full"
+              className="input input-bordered input-md w-full pr-12 text-sm rounded-full bg-base-200/60"
             />
             <button
               type="submit"
-              className="absolute right-3 top-2 text-base-content/60"
-              aria-label="Submit search"
+              className="absolute right-1 top-1/2 -translate-y-1/2 min-w-[44px] min-h-[44px] flex items-center justify-center text-base-content/70 hover:text-primary"
+              aria-label="Submit mobile search"
             >
-              <Search className="w-4 h-4" />
+              <Search className="w-5 h-5" />
             </button>
           </form>
 
           {/* Mobile Category List */}
           <div className="space-y-1">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-base-content/50 px-2">
+            <p className="text-[11px] font-bold uppercase tracking-widest text-base-content/70 px-2 py-1">
               Categories
             </p>
             {categories.map((cat) => {
@@ -344,7 +348,7 @@ export default function Navbar() {
                   key={cat}
                   href={href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-2 rounded-lg text-sm font-medium hover:bg-base-200"
+                  className="block px-3 py-3 rounded-lg text-sm font-medium hover:bg-base-200 min-h-[44px] flex items-center"
                 >
                   {cat}
                 </Link>
@@ -360,7 +364,8 @@ export default function Navbar() {
                   setMobileMenuOpen(false);
                   router.push('/');
                 }}
-                className="btn btn-sm btn-ghost text-error w-full flex items-center justify-center gap-1 text-xs"
+                className="btn btn-md btn-ghost text-error w-full flex items-center justify-center gap-2 text-sm min-h-[44px]"
+                aria-label="Sign out of account"
               >
                 <LogOut className="w-4 h-4" />
                 <span>Sign Out</span>

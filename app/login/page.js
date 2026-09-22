@@ -82,16 +82,17 @@ function LoginContent() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="label text-xs font-bold uppercase tracking-wider text-base-content/70">
+              <label htmlFor="login-email" className="label text-xs font-bold uppercase tracking-wider text-base-content/70">
                 Email Address or Admin Username
               </label>
               <div className="relative">
                 <input
+                  id="login-email"
                   type="text"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@example.com"
-                  className="input input-bordered w-full pl-10 text-sm focus:input-primary rounded-xl"
+                  className="input input-bordered min-h-[44px] w-full pl-10 text-sm focus:input-primary rounded-xl"
                   required
                 />
                 <Mail className="w-4 h-4 text-base-content/40 absolute left-3 top-3.5" />
@@ -100,17 +101,18 @@ function LoginContent() {
 
             <div>
               <div className="flex items-center justify-between">
-                <label className="label text-xs font-bold uppercase tracking-wider text-base-content/70">
+                <label htmlFor="login-password" className="label text-xs font-bold uppercase tracking-wider text-base-content/70">
                   Password
                 </label>
               </div>
               <div className="relative">
                 <input
+                  id="login-password"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="input input-bordered w-full pl-10 text-sm focus:input-primary rounded-xl"
+                  className="input input-bordered min-h-[44px] w-full pl-10 text-sm focus:input-primary rounded-xl"
                   required
                 />
                 <Lock className="w-4 h-4 text-base-content/40 absolute left-3 top-3.5" />
@@ -120,7 +122,7 @@ function LoginContent() {
             <button
               type="submit"
               disabled={loading}
-              className="btn btn-primary w-full rounded-xl mt-4 gap-2 font-bold uppercase tracking-wider text-xs shadow-md"
+              className="btn btn-primary min-h-[44px] w-full rounded-xl mt-4 gap-2 font-bold uppercase tracking-wider text-xs shadow-md"
             >
               {loading ? (
                 <>

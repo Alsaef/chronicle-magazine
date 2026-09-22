@@ -63,7 +63,7 @@ export default function StoryCard({ story, featured = false, rank = null }) {
 
   return (
     <article
-      className={`card bg-base-100 border border-base-300 shadow-sm hover:shadow-xl transition-all duration-300 group overflow-hidden flex flex-col justify-between ${
+      className={`card bg-base-100 border border-base-300 shadow-sm hover:shadow-xl transition-[box-shadow,border-color] duration-300 group overflow-hidden flex flex-col justify-between ${
         featured ? 'md:col-span-2 md:grid md:grid-cols-12 md:gap-6' : ''
       }`}
     >
@@ -73,13 +73,17 @@ export default function StoryCard({ story, featured = false, rank = null }) {
           featured ? 'md:col-span-7 h-64 md:h-full min-h-[260px]' : 'h-56'
         }`}
       >
-        <Link href={storyHref} className="block w-full h-full relative">
+        <Link
+          href={storyHref}
+          className="block w-full h-full relative"
+          aria-label={`Read biography: ${story.title}`}
+        >
           <Image
             src={story.coverImage || 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=800&q=80'}
             alt={story.title}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 384px"
-            className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+            className="object-cover object-center transform-gpu group-hover:scale-105 transition-transform duration-500 ease-out"
           />
         </Link>
 
@@ -144,11 +148,11 @@ export default function StoryCard({ story, featured = false, rank = null }) {
 
             <button
               onClick={handleLike}
-              className={`flex items-center gap-1 transition-colors hover:text-error ${
+              className={`min-h-[44px] min-w-[44px] -my-2.5 -ml-2 px-2.5 py-2 inline-flex items-center gap-1.5 rounded-lg transition-colors hover:text-error hover:bg-base-200/50 ${
                 isLiked ? 'text-error font-bold' : ''
               }`}
-              title="Like this profile"
-              aria-label="Like this profile"
+              title={`Appreciate biography of ${story.title}`}
+              aria-label={`Appreciate biography of ${story.title}`}
             >
               <Heart className={`w-3.5 h-3.5 ${isLiked ? 'fill-current text-error' : ''}`} />
               <span>{likes.toLocaleString()}</span>
@@ -157,7 +161,8 @@ export default function StoryCard({ story, featured = false, rank = null }) {
 
           <Link
             href={storyHref}
-            className="inline-flex items-center gap-1 font-semibold text-primary group-hover:translate-x-0.5 transition-transform"
+            className="min-h-[44px] -my-2.5 -mr-2 px-2.5 py-2 inline-flex items-center gap-1 font-semibold text-primary group-hover:translate-x-0.5 transition-transform transform-gpu"
+            aria-label={`Read full biography of ${story.title}`}
           >
             <span>Read Story</span>
             <ArrowUpRight className="w-3.5 h-3.5" />

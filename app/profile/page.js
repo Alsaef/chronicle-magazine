@@ -115,7 +115,8 @@ export default function ProfilePage() {
                 logout();
                 router.push('/');
               }}
-              className="btn btn-sm btn-outline btn-error rounded-full text-xs gap-1.5"
+              className="btn btn-sm min-h-[44px] px-4 btn-outline btn-error rounded-full text-xs gap-1.5 flex items-center"
+              aria-label="Sign out of reader account"
             >
               <LogOut className="w-4 h-4" />
               <span>Sign Out</span>

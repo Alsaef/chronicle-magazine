@@ -26,27 +26,7 @@ module.exports = {
     require('daisyui'),
   ],
   daisyui: {
-    themes: [
-      {
-        editorialLight: {
-          "primary": "#1e293b",
-          "secondary": "#991b1b",
-          "accent": "#d97706",
-          "neutral": "#262626",
-          "base-100": "#fbfbfb",
-          "base-200": "#f3f4f6",
-          "base-300": "#e5e7eb",
-          "info": "#0284c7",
-          "success": "#16a34a",
-          "warning": "#d97706",
-          "error": "#dc2626",
-        },
-      },
-      "luxury",
-      "corporate",
-      "dark",
-      "light",
-    ],
+    themes: ["corporate", "luxury"],
     darkTheme: "luxury",
     base: true,
     styled: true,

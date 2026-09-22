@@ -96,16 +96,17 @@ function RegisterContent() {
 
           <form onSubmit={handleSubmit} className="space-y-3.5">
             <div>
-              <label className="label text-xs font-bold uppercase tracking-wider text-base-content/70">
+              <label htmlFor="reg-name" className="label text-xs font-bold uppercase tracking-wider text-base-content/70">
                 Full Name
               </label>
               <div className="relative">
                 <input
+                  id="reg-name"
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g. Eleanor Vance"
-                  className="input input-bordered w-full pl-10 text-sm focus:input-primary rounded-xl"
+                  className="input input-bordered min-h-[44px] w-full pl-10 text-sm focus:input-primary rounded-xl"
                   required
                 />
                 <User className="w-4 h-4 text-base-content/40 absolute left-3 top-3.5" />
@@ -113,16 +114,17 @@ function RegisterContent() {
             </div>
 
             <div>
-              <label className="label text-xs font-bold uppercase tracking-wider text-base-content/70">
+              <label htmlFor="reg-email" className="label text-xs font-bold uppercase tracking-wider text-base-content/70">
                 Email Address
               </label>
               <div className="relative">
                 <input
+                  id="reg-email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@example.com"
-                  className="input input-bordered w-full pl-10 text-sm focus:input-primary rounded-xl"
+                  className="input input-bordered min-h-[44px] w-full pl-10 text-sm focus:input-primary rounded-xl"
                   required
                 />
                 <Mail className="w-4 h-4 text-base-content/40 absolute left-3 top-3.5" />
@@ -130,16 +132,17 @@ function RegisterContent() {
             </div>
 
             <div>
-              <label className="label text-xs font-bold uppercase tracking-wider text-base-content/70">
+              <label htmlFor="reg-password" className="label text-xs font-bold uppercase tracking-wider text-base-content/70">
                 Create Password
               </label>
               <div className="relative">
                 <input
+                  id="reg-password"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="At least 6 characters"
-                  className="input input-bordered w-full pl-10 text-sm focus:input-primary rounded-xl"
+                  className="input input-bordered min-h-[44px] w-full pl-10 text-sm focus:input-primary rounded-xl"
                   required
                   minLength={6}
                 />
@@ -148,16 +151,17 @@ function RegisterContent() {
             </div>
 
             <div>
-              <label className="label text-xs font-bold uppercase tracking-wider text-base-content/70">
+              <label htmlFor="reg-confirm-password" className="label text-xs font-bold uppercase tracking-wider text-base-content/70">
                 Confirm Password
               </label>
               <div className="relative">
                 <input
+                  id="reg-confirm-password"
                   type="password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="Confirm your password"
-                  className="input input-bordered w-full pl-10 text-sm focus:input-primary rounded-xl"
+                  className="input input-bordered min-h-[44px] w-full pl-10 text-sm focus:input-primary rounded-xl"
                   required
                 />
                 <Lock className="w-4 h-4 text-base-content/40 absolute left-3 top-3.5" />
@@ -167,7 +171,7 @@ function RegisterContent() {
             <button
               type="submit"
               disabled={loading}
-              className="btn btn-primary w-full rounded-xl mt-4 gap-2 font-bold uppercase tracking-wider text-xs shadow-md"
+              className="btn btn-primary min-h-[44px] w-full rounded-xl mt-4 gap-2 font-bold uppercase tracking-wider text-xs shadow-md"
             >
               {loading ? (
                 <>
