@@ -138,10 +138,10 @@ export default function HomeClient({
       {/* ------------------------------------------------------------- */}
       {!searchQuery && activeCategory === 'All' && (
         loading ? (
-          <section className="border-b border-base-300 bg-base-200/50 py-10 lg:py-16 min-h-[520px] flex items-center">
+          <section className="border-b border-base-300 bg-base-200/50 py-8 sm:py-10 lg:py-16">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[460px]">
-                <div className="lg:col-span-7 space-y-5 min-h-[380px] flex flex-col justify-center">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div className="lg:col-span-7 space-y-5">
                   <div className="skeleton h-6 w-48 rounded-full" />
                   <div className="space-y-2">
                     <div className="skeleton h-9 w-full rounded-lg" />
@@ -160,18 +160,18 @@ export default function HomeClient({
                   <div className="skeleton h-12 w-52 rounded-full mt-2" />
                 </div>
                 <div className="lg:col-span-5">
-                  <div className="skeleton rounded-2xl aspect-[4/5] max-h-[460px] min-h-[380px] w-full" />
+                  <div className="skeleton rounded-2xl aspect-[16/10] sm:aspect-[4/3] lg:aspect-[4/5] w-full" />
                 </div>
               </div>
             </div>
           </section>
         ) : (
           featuredStory && (
-            <section className="border-b border-base-300 bg-base-200/50 py-10 lg:py-16 min-h-[520px] flex items-center transition-colors">
+            <section className="border-b border-base-300 bg-base-200/50 py-8 sm:py-10 lg:py-16 transition-colors">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[460px]">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                   {/* Left Column: Editorial Headline & Copy */}
-                  <div className="lg:col-span-7 space-y-5 min-h-[380px] flex flex-col justify-center">
+                  <div className="lg:col-span-7 space-y-5">
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider w-fit">
                       <Sparkles className="w-3.5 h-3.5" /> Person of the Week • Exclusive Profile
                     </div>
@@ -221,7 +221,7 @@ export default function HomeClient({
 
                   {/* Right Column: Hero Cover Image Frame with Next.js Image priority */}
                   <div className="lg:col-span-5">
-                    <div className="relative group rounded-2xl overflow-hidden shadow-2xl border border-base-300 aspect-[4/5] max-h-[460px] min-h-[380px] w-full">
+                    <div className="relative group rounded-2xl overflow-hidden shadow-2xl border border-base-300 aspect-[16/10] sm:aspect-[4/3] lg:aspect-[4/5] w-full">
                       <Link
                         href={`/story/${featuredStory.slug || featuredStory._id}`}
                         className="block w-full h-full relative"
@@ -232,7 +232,7 @@ export default function HomeClient({
                           alt={featuredStory.title}
                           fill
                           priority
-                          sizes="(max-width: 1024px) 100vw, 500px"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 480px"
                           className="object-cover transform-gpu group-hover:scale-105 transition-transform duration-700 ease-out"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 text-white z-10 pointer-events-none">

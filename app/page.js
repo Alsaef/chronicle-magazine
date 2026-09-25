@@ -48,10 +48,10 @@ function HomeSkeleton() {
   return (
     <div className="min-h-screen pb-20">
       {/* Hero Skeleton with fixed layout metrics to eliminate CLS */}
-      <section className="border-b border-base-300 bg-base-200/50 py-10 lg:py-16 min-h-[520px] flex items-center">
+      <section className="border-b border-base-300 bg-base-200/50 py-8 sm:py-10 lg:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[460px]">
-            <div className="lg:col-span-7 space-y-5 min-h-[380px] flex flex-col justify-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-7 space-y-5">
               <div className="skeleton h-6 w-48 rounded-full" />
               <div className="space-y-2">
                 <div className="skeleton h-9 w-full rounded-lg" />
@@ -70,7 +70,7 @@ function HomeSkeleton() {
               <div className="skeleton h-12 w-52 rounded-full mt-2" />
             </div>
             <div className="lg:col-span-5">
-              <div className="skeleton rounded-2xl aspect-[4/5] max-h-[460px] min-h-[380px] w-full" />
+              <div className="skeleton rounded-2xl aspect-[16/10] sm:aspect-[4/3] lg:aspect-[4/5] w-full" />
             </div>
           </div>
         </div>

@@ -8,9 +8,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        serif: ['var(--font-serif)', 'Merriweather', 'Georgia', 'Cambria', 'serif'],
+        serif: ['Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
         sans: ['var(--font-sans)', 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        display: ['var(--font-display)', 'Playfair Display', 'Georgia', 'serif'],
+        display: ['var(--font-display)', 'Georgia', 'serif'],
       },
       typography: {
         DEFAULT: {
@@ -31,6 +31,7 @@ module.exports = {
     base: true,
     styled: true,
     utils: true,
+    logs: false,
   },
 };
 

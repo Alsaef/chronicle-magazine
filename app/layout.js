@@ -1,6 +1,6 @@
 import './globals.css';
 import { Suspense } from 'react';
-import { Inter, Merriweather, Playfair_Display } from 'next/font/google';
+import { Inter, Playfair_Display } from 'next/font/google';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { ThemeProvider } from '../context/ThemeContext';
@@ -11,16 +11,6 @@ const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-sans',
-  adjustFontFallback: true,
-});
-
-const merriweather = Merriweather({
-  weight: ['400', '700'],
-  style: ['normal'],
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-serif',
-  preload: false,
   adjustFontFallback: true,
 });
 
@@ -127,7 +117,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${merriweather.variable} ${playfair.variable}`}
+      className={`${inter.variable} ${playfair.variable}`}
       data-theme="corporate"
       suppressHydrationWarning
     >

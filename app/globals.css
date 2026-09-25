@@ -11,17 +11,23 @@ body {
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
 }
 
-/* Editorial Drop Cap styling */
+/* Editorial Drop Cap styling: inline on mobile to prevent forced reflow and layout shift, floated on desktop */
 .drop-cap::first-letter {
   font-family: var(--font-display);
-  float: left;
-  font-size: 3.8rem;
-  line-height: 0.8;
-  padding-top: 4px;
-  padding-right: 12px;
-  padding-bottom: 2px;
-  font-weight: 700;
+  font-size: 1.4em;
+  font-weight: 800;
   color: hsl(var(--p));
+}
+
+@media (min-width: 640px) {
+  .drop-cap::first-letter {
+    float: left;
+    font-size: 3.5rem;
+    line-height: 0.8;
+    padding-top: 4px;
+    padding-right: 12px;
+    padding-bottom: 2px;
+  }
 }
 
 /* Custom Scrollbar */
