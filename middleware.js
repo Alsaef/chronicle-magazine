@@ -5,7 +5,7 @@ const ALLOWED_ORIGINS = new Set([
   'https://chronicle-magazine.vercel.app',
   'http://localhost:3000',
   'http://127.0.0.1:3000',
-  ...(process.env.NEXT_PUBLIC_SITE_URL ? [process.env.NEXT_PUBLIC_SITE_URL.trim()] : []),
+  ...(process.env.PUBLIC_SITE_URL ? [process.env.PUBLIC_SITE_URL.trim()] : []),
 ]);
 
 const REDIRECT_PARAM_NAMES = [
