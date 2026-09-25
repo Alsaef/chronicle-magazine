@@ -2,12 +2,12 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Eye, Heart, Clock, ArrowUpRight, Sparkles } from 'lucide-react';
 import { likeStory } from '../lib/api';
 import { useToast } from '../context/ToastContext';
 import { useAuth } from '../context/AuthContext';
+import SafeImage from './SafeImage';
 
 export default function StoryCard({ story, featured = false, rank = null }) {
   const router = useRouter();
@@ -78,7 +78,7 @@ export default function StoryCard({ story, featured = false, rank = null }) {
           className="block w-full h-full relative"
           aria-label={`Read biography: ${story.title}`}
         >
-          <Image
+          <SafeImage
             src={story.coverImage || 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=800&q=80'}
             alt={story.title}
             fill
@@ -87,14 +87,19 @@ export default function StoryCard({ story, featured = false, rank = null }) {
           />
         </Link>
 
-        {/* Category Badge */}
-        <div className="absolute top-3 left-3 flex items-center gap-2">
-          <span className="badge badge-primary font-semibold text-xs tracking-wider uppercase shadow-md">
+        {/* Category & Featured Badges (auto-adjusts height when text spans 2+ lines) */}
+        <div
+          className={`absolute top-3 left-3 ${
+            rank ? 'right-12' : 'right-3'
+          } flex flex-wrap items-start gap-1.5`}
+        >
+          <span className="badge badge-primary h-auto min-h-[1.5rem] py-1 px-2.5 font-semibold text-xs leading-snug tracking-wider uppercase shadow-md whitespace-normal text-left">
             {story.category}
           </span>
           {story.featured && (
-            <span className="badge badge-accent font-semibold text-xs tracking-wider uppercase shadow-md flex items-center gap-1">
-              <Sparkles className="w-3 h-3" /> Featured
+            <span className="badge badge-accent h-auto min-h-[1.5rem] py-1 px-2.5 font-semibold text-xs leading-snug tracking-wider uppercase shadow-md inline-flex items-center gap-1 whitespace-normal text-left">
+              <Sparkles className="w-3 h-3 shrink-0" />
+              <span>Featured</span>
             </span>
           )}
         </div>

@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { User, Mail, Lock, ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
+import { isSafeRedirectPath, getSafeRedirectPath } from '../../lib/security';
 
 function RegisterContent() {
   const router = useRouter();
@@ -13,7 +14,8 @@ function RegisterContent() {
   const { register } = useAuth();
   const toast = useToast();
 
-  const redirectUrl = searchParams.get('redirect');
+  const rawRedirect = searchParams.get('redirect');
+  const redirectUrl = isSafeRedirectPath(rawRedirect) ? getSafeRedirectPath(rawRedirect) : null;
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -48,7 +50,7 @@ function RegisterContent() {
         email: email.trim(),
         password
       });
-      if (redirectUrl && redirectUrl.startsWith('/')) {
+      if (redirectUrl) {
         router.push(redirectUrl);
       } else {
         router.push('/profile');

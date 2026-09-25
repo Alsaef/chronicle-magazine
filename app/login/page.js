@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Mail, Lock, ArrowRight, BookOpen, Shield } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
+import { isSafeRedirectPath, getSafeRedirectPath } from '../../lib/security';
 
 function LoginContent() {
   const router = useRouter();
@@ -13,7 +14,8 @@ function LoginContent() {
   const { login } = useAuth();
   const toast = useToast();
 
-  const redirectUrl = searchParams.get('redirect');
+  const rawRedirect = searchParams.get('redirect');
+  const redirectUrl = isSafeRedirectPath(rawRedirect) ? getSafeRedirectPath(rawRedirect) : null;
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,7 +34,7 @@ function LoginContent() {
 
     try {
       const res = await login(email, password);
-      if (redirectUrl && redirectUrl.startsWith('/')) {
+      if (redirectUrl) {
         router.push(redirectUrl);
       } else if (res.user.role === 'admin' || res.user.role === 'superadmin') {
         router.push('/admin/dashboard');

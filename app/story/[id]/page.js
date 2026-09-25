@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useParams, useRouter } from 'next/navigation';
 import {
   Heart,
@@ -26,6 +25,7 @@ import {
 import { getStory, likeStory, getComments, postComment } from '../../../lib/api';
 import { useToast } from '../../../context/ToastContext';
 import { useAuth } from '../../../context/AuthContext';
+import SafeImage from '../../../components/SafeImage';
 
 export default function StoryDetailPage() {
   const params = useParams();
@@ -205,7 +205,7 @@ export default function StoryDetailPage() {
       <header className="border-b border-base-300 bg-base-200/40 py-10 lg:py-14 transition-colors">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           {/* Breadcrumb / Back Link */}
-          <div className="mb-6 flex items-center justify-between">
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-2">
             <Link
               href="/"
               className="inline-flex items-center gap-1.5 min-h-[44px] py-2 text-xs font-bold uppercase tracking-wider text-base-content/70 hover:text-primary transition-colors"
@@ -213,7 +213,7 @@ export default function StoryDetailPage() {
               <ArrowLeft className="w-3.5 h-3.5" /> Back to Biographies
             </Link>
 
-            <span className="badge badge-primary font-bold text-xs uppercase tracking-widest">
+            <span className="badge badge-primary h-auto min-h-[1.5rem] py-1 px-2.5 leading-snug whitespace-normal text-left font-bold text-xs uppercase tracking-widest">
               {story.category}
             </span>
           </div>
@@ -264,7 +264,7 @@ export default function StoryDetailPage() {
       {/* ------------------------------------------------------------- */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 -mt-6 sm:-mt-8 mb-10">
         <div className="rounded-2xl overflow-hidden shadow-2xl border border-base-300 relative aspect-[16/9] max-h-[520px]">
-          <Image
+          <SafeImage
             src={story.coverImage}
             alt={story.title}
             fill

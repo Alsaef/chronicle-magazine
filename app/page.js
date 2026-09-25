@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useSearchParams, useRouter } from 'next/navigation';
 import {
   Sparkles,
@@ -18,6 +17,7 @@ import {
 } from 'lucide-react';
 import { getStories, getCategories } from '../lib/api';
 import StoryCard from '../components/StoryCard';
+import SafeImage from '../components/SafeImage';
 
 function HomeContent() {
   const searchParams = useSearchParams();
@@ -152,7 +152,7 @@ function HomeContent() {
 
                     {/* Meta details & CTA */}
                     <div className="pt-2 flex flex-wrap items-center gap-4 text-xs text-base-content/60">
-                      <span className="badge badge-primary badge-outline font-semibold uppercase tracking-wider">
+                      <span className="badge badge-primary badge-outline h-auto min-h-[1.5rem] py-1 px-2.5 leading-snug whitespace-normal text-left font-semibold uppercase tracking-wider">
                         {featuredStory.category}
                       </span>
                       <span className="flex items-center gap-1 font-medium">
@@ -188,7 +188,7 @@ function HomeContent() {
                         className="block w-full h-full relative"
                         aria-label={`Read featured biography: ${featuredStory.title}`}
                       >
-                        <Image
+                        <SafeImage
                           src={featuredStory.coverImage}
                           alt={featuredStory.title}
                           fill

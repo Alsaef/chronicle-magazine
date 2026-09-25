@@ -39,3 +39,13 @@ body {
   background: hsl(var(--bc) / 0.4);
 }
 
+/* Multi-line badge auto-height adjustment */
+.badge {
+  height: auto;
+  min-height: 1.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  line-height: 1.35;
+  white-space: normal;
+}
+
