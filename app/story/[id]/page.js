@@ -208,7 +208,7 @@ export default function StoryDetailPage() {
           <div className="mb-6 flex flex-wrap items-center justify-between gap-2">
             <Link
               href="/"
-              className="inline-flex items-center gap-1.5 min-h-[44px] py-2 text-xs font-bold uppercase tracking-wider text-base-content/70 hover:text-primary transition-colors"
+              className="inline-flex items-center gap-1.5 min-h-[44px] py-2 text-xs font-bold uppercase tracking-wider text-base-content/85 hover:text-primary transition-colors"
             >
               <ArrowLeft className="w-3.5 h-3.5" /> Back to Biographies
             </Link>
@@ -224,19 +224,19 @@ export default function StoryDetailPage() {
           </h1>
 
           {/* Standfirst / Summary */}
-          <p className="text-lg sm:text-xl font-serif text-base-content/80 leading-relaxed italic mb-6">
+          <p className="text-lg sm:text-xl font-serif text-base-content/90 leading-relaxed italic mb-6">
             {story.summary}
           </p>
 
           {/* Author, Date & Reading Metas */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-base-300/70 text-xs text-base-content/70">
+          <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-base-300/70 text-xs text-base-content/85">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold font-serif">
                 {story.author ? story.author[0] : 'C'}
               </div>
               <div>
                 <p className="font-semibold text-base-content">{story.author || 'Chronicle Desk'}</p>
-                <p className="text-[11px] text-base-content/50">
+                <p className="text-[11px] text-base-content/75">
                   Published {story.createdAt ? new Date(story.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'Recently'}
                 </p>
               </div>

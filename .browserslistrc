@@ -1,9 +1,9 @@
 # Modern desktop, laptop, and mobile phone browser targets
-Chrome >= 100
-ChromeAndroid >= 100
-Firefox >= 100
-FirefoxAndroid >= 100
+Chrome >= 104
+ChromeAndroid >= 104
+Firefox >= 104
+FirefoxAndroid >= 104
 Safari >= 15.4
 iOS >= 15.4
-Edge >= 100
+Edge >= 104
 not dead

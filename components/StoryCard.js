@@ -122,8 +122,8 @@ export default function StoryCard({ story, featured = false, rank = null }) {
       <div className={`card-body p-5 flex flex-col justify-between ${featured ? 'md:col-span-5 md:p-6' : ''}`}>
         <div className="space-y-2.5">
           {/* Metadata: Author & Date */}
-          <div className="flex items-center gap-2 text-xs text-base-content/60">
-            <span className="font-semibold text-base-content/80">{story.author || 'Chronicle Desk'}</span>
+          <div className="flex items-center gap-2 text-xs text-base-content/80">
+            <span className="font-semibold text-base-content/90">{story.author || 'Chronicle Desk'}</span>
             <span>•</span>
             <span>
               {story.createdAt ? new Date(story.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Recent'}
@@ -138,13 +138,13 @@ export default function StoryCard({ story, featured = false, rank = null }) {
           </h3>
 
           {/* Summary */}
-          <p className="text-sm text-base-content/70 line-clamp-3 leading-relaxed">
+          <p className="text-sm text-base-content/85 line-clamp-3 leading-relaxed">
             {story.summary}
           </p>
         </div>
 
         {/* Card Footer: Views, Likes, Read link */}
-        <div className="pt-4 mt-4 border-t border-base-200 flex items-center justify-between text-xs text-base-content/60">
+        <div className="pt-4 mt-4 border-t border-base-200 flex items-center justify-between text-xs text-base-content/80">
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-1" title="Views">
               <Eye className="w-3.5 h-3.5" />

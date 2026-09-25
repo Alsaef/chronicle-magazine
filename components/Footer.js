@@ -99,7 +99,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="font-bold uppercase tracking-wider text-xs text-base-content/50 mb-4">
+          <h3 className="font-bold uppercase tracking-wider text-xs text-base-content/80 mb-4">
             Curated Categories
           </h3>
           <ul className="space-y-1 text-sm">
@@ -127,7 +127,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="font-bold uppercase tracking-wider text-xs text-base-content/50 mb-4">
+          <h3 className="font-bold uppercase tracking-wider text-xs text-base-content/80 mb-4">
             Editorial & Access
           </h3>
           <ul className="space-y-1 text-sm">
@@ -156,7 +156,7 @@ export default function Footer() {
       </div>
 
       {/* Copyright Bar */}
-      <div className="border-t border-base-300 py-6 text-center text-xs text-base-content/60">
+      <div className="border-t border-base-300 py-6 text-center text-xs text-base-content/80">
         <p className="flex items-center justify-center gap-1">
           © {new Date().getFullYear()} Chronicle Magazine. Built with Next.js, Express & MongoDB Native Driver.
         </p>

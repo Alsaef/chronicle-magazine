@@ -11,22 +11,26 @@ const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-sans',
+  adjustFontFallback: true,
 });
 
 const merriweather = Merriweather({
-  weight: ['300', '400', '700'],
-  style: ['normal', 'italic'],
+  weight: ['400', '700'],
+  style: ['normal'],
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-serif',
+  preload: false,
+  adjustFontFallback: true,
 });
 
 const playfair = Playfair_Display({
-  weight: ['600', '700', '800', '900'],
-  style: ['normal', 'italic'],
+  weight: ['700', '800'],
+  style: ['normal'],
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-display',
+  adjustFontFallback: true,
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://chronicle-magazine.vercel.app';
@@ -128,8 +132,8 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
     >
       <head>
-        <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        <link rel="preconnect" href="https://chronicle-magazine-backend.onrender.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://chronicle-magazine-backend.onrender.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
